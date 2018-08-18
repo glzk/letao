@@ -2,7 +2,7 @@
  * Created by Jepson on 2018/8/18.
  */
 
-$(function() {
+$(function () {
   /*
    * 1. 进行表单校验配置
    *    校验要求:
@@ -34,6 +34,9 @@ $(function() {
             min: 2,
             max: 6,
             message: "用户名长度必须在 2-6 位"
+          },
+          callback: {
+            message: "用户名不存在"
           }
         }
       },
@@ -46,11 +49,45 @@ $(function() {
             min: 6,
             max: 12,
             message: "密码长度必须是 6-12 位"
+          },
+          callback: {
+            message: "密码不能为空"
           }
         }
       }
     }
   });
+  //2.登录功能
+  // 表单校验插件会在提交按钮进行校验
+  // 1 校验成功 默认提交表单，会发生页面跳转
+  //我们需要注册表单校验时间，阻止默认提交
+  $("#form").on('success.form.bv', function (e) {
+    e.preventDefault();
+    //通过ajax发生请求
+    $.ajax({
+      type: 'post',
+      url: '/employee/employeeLogin',
+      data: $('#form').serialize(),
+      dataType: 'json',
+      success: function (info) {
+        console.log(info);
+        
+        if (info.success) {
+          location.href = 'index.html'
+        }
+        if (info.error == 1001) {
+          $('#form').data("bootstrapValidator").updateStatus('password','INVALID',"callback")
+        }
+        if (info.error == 1000) {
+          $('#form').data("bootstrapValidator").updateStatus('username','INVALID',"callback")
+        }
+      }
+    })
+  });
+  //重置功能
+  $("button[type='reset']").on('click', function () {
+    $("#form").data('bootstrapValidator').resetForm();
+  })
 
 
 });
