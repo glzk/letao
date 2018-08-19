@@ -13,7 +13,6 @@
 </head>
 
 <body>
-  <!-- 侧边栏 -->
   <div class="lt-aside">
     <div class="brand">
       <a href="#">黑马25期</a>
@@ -41,7 +40,7 @@
           </div>
         </li>
         <li>
-          <a href="product.html">
+          <a href="product.html" class="current">
             <i class="glyphicon glyphicon-tags"></i>
             <span>商品管理</span>
           </a>
@@ -49,9 +48,7 @@
       </ul>
     </div>
   </div>
-  <!-- 主体 -->
   <div class="lt-main">
-    <!-- 头部 -->
     <div class="it-topbar">
       <a href="#" class="pull-left icon_menu ">
         <i class="glyphicon glyphicon-align-justify"></i>
@@ -61,17 +58,12 @@
       </a>
     </div>
     <div class="container-fluid">
-      <!-- 路径导航 -->
       <ol class="breadcrumb mt_20">
         <li>
           <a href="#">管理系统</a>
         </li>
-        <li class="active">首页</li>
+        <li class="active">商品管理</li>
       </ol>
-      <!-- 表格 -->
-      <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-      <div class= "pull-left" id="main-left" style="width: 48%;height:400px;"></div>
-      <div class = "pull-right" id="main-right" style="width: 48%;height:400px;"></div>
     </div>
   </div>
   <!-- 模态框 -->
@@ -83,7 +75,7 @@
             <h4 class="modal-title">温馨提示</h4>
           </div>
           <div class="modal-body" style="color:red">
-            <p > <i class="glyphicon glyphicon-info-sign"></i>您确定要退出后台管理系统吗?</p>
+            <p > <i class="glyphicon glyphicon-info-sign"></i>您确定要退出后台管理系统吗？&hellip;</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -97,7 +89,6 @@
   <script src="./lib/bootstrap/js/bootstrap.js"></script>
   <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
   <script src="./lib/nprogress/nprogress.js"></script>
-  <script src="./lib/echarts/echarts.min.js"></script>
   <script src="./js/common.js"></script>
   <script src="./js/index.js"></script>
 </body>
