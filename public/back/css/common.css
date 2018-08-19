@@ -116,6 +116,11 @@ ul {
 .lt-main .it-topbar.hidemenu {
   padding-left: 0px;
 }
+.lt-main .container-fluid .table.table-bordered th,
+.lt-main .container-fluid .table.table-bordered td {
+  vertical-align: middle;
+  text-align: center;
+}
 .lt-main.hidemenu {
   padding-left: 0px;
 }
