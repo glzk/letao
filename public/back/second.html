@@ -24,7 +24,7 @@
     <div class="nav">
       <ul>
         <li>
-          <a href="user.html" >
+          <a href="user.html">
             <i class="glyphicon glyphicon-user"></i>
             <span>用户管理</span>
           </a>
@@ -49,6 +49,7 @@
     </div>
   </div>
   <div class="lt-main">
+    <!-- 头部 -->
     <div class="it-topbar">
       <a href="#" class="pull-left icon_menu ">
         <i class="glyphicon glyphicon-align-justify"></i>
@@ -57,41 +58,137 @@
         <i class="glyphicon glyphicon-log-out "></i>
       </a>
     </div>
+    <!-- 主体 -->
     <div class="container-fluid">
+      <!-- 路径导航 -->
       <ol class="breadcrumb mt_20">
         <li>
           <a href="#">管理系统</a>
         </li>
-        <li class="active">分类管理</li>
+        <li>分类管理</li>
         <li class="active">二级分类</li>
       </ol>
-    </div>
-  </div>
-  <!-- 模态框 -->
-  <div class="modal fade" id='Modal'>
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">温馨提示</h4>
-          </div>
-          <div class="modal-body" style="color:red">
-            <p > <i class="glyphicon glyphicon-info-sign"></i>您确定要退出后台管理系统吗？&hellip;</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" id="icon_logout">退出</button>
-          </div>
+      <!-- 主体内容 -->
+      <div class="lt-content">
+        <button class="btn btn-default addBtn">添加分类</button>
+        <table class="table table-bordered table-hover mt_20">
+          <thead>
+            <tr>
+              <th width="10%">序号</th>
+              <th width='30%'>一级分类名</th>
+              <th width='30%'>二级分类名</th>
+              <th width='30%'>二级分类LOGO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr>		
+              <td>1</td>
+              <td>女士馆</td>
+              <td>阿萨德2</td>
+              <td>
+                <img src="./images/none.png" height="50" alt="">
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+        <div class="text-right">
+          <ul id="paginator"></ul>
         </div>
       </div>
     </div>
-
+  </div>
+  <!-- 公用模态框 -->
+  <div class="modal fade" id='Modal'>
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">温馨提示</h4>
+        </div>
+        <div class="modal-body" style="color:red">
+          <p>
+            <i class="glyphicon glyphicon-info-sign"></i>您确定要退出后台管理系统吗？&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="icon_logout">退出</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 模态框 -->
+  <div class="modal fade" id='secondModal'>
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">添加分类</h4>
+        </div>
+        <div class="modal-body">
+          <div class="dropdown mt-bottom">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+              <span class="s1">请选择一级分类</span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <!-- <a href="#">Action</a> -->
+              </li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <input type="text" name="categoryName" class="form-control" placeholder="请输入二级分类">
+          </div>
+          <div class="form-group">
+            <label class="btn btn-default mt-bottom" for="fileupload">上传图片</label>
+            <input type="file" data-url="/category/addSecondCategoryPic" name="pic1" style="display: none" id="fileupload" >
+          </div>
+          <div class="form-group">
+              <img src="./images/none.png" width="100" alt="">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-primary">添加</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 模板引擎 -->
+  <script type="text/html" id="secondTpl">
+    {{each rows v i}}
+    <tr>		
+        <td>{{i+1 + (page-1)*size}}</td>
+        <td>{{v.categoryName}}</td>
+        <td>{{v.brandName}}</td>
+        <td>
+          <img src="{{v.brandLogo}}" height="50" alt="">
+        </td>
+      </tr>
+     {{/each}} 
+  </script>
+  <!-- 下拉框的模板 -->
+  <script type="text/html" id="cateTpl">
+  {{each rows v i}}
+    <li>
+      <a href="#">{{v.categoryName}}</a>
+  </li>
+  {{/each}}
+  </script>
   <script src="./lib/jquery/jquery.min.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.js"></script>
   <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
   <script src="./lib/nprogress/nprogress.js"></script>
+  <script src="./lib/artTemplate/template-web.js"></script>
+  <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+  <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+  <script src='./lib/jquery-fileupload/jquery.fileupload.js'></script>
   <script src="./js/common.js"></script>
-  <script src="./js/index.js"></script>
+  <script src="./js/second.js"></script>
 </body>
 
 </html>
